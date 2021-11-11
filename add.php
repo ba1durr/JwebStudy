@@ -38,7 +38,7 @@ $errors = ['email' => '', 'title' => '', 'ingredients' => ''];
             $errors['ingredients'] = 'At least one ingredient is required <br />';
         }else {
             $ingredients = $_POST['Ingredients'];
-            if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){
+            if(!preg_match('/^([a-zA-Z]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){
                 $errors['ingredients'] =  'ingredients must be a comma separated list';
             }
             // echo htmlspecialchars($_POST['Ingredients']);             
