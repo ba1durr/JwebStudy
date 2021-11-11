@@ -37,7 +37,7 @@ $errors = ['email' => '', 'title' => '', 'ingredients' => ''];
         if (empty($_POST['Ingredients'])){
             $errors['ingredients'] = 'At least one ingredient is required <br />';
         }else {
-            $ingredients = $_POST['Ingredients'];
+            $ingredients = $_POST['ingredients'];
             if(!preg_match('/^([a-zA-Z]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){
                 $errors['ingredients'] =  'ingredients must be a comma separated list';
             }
@@ -57,13 +57,13 @@ $errors = ['email' => '', 'title' => '', 'ingredients' => ''];
         <h4 class="center">Add a Pizza</h4>
         <form action="add.php" class="white" method="POST">
             <label>Your Email:</label>
-            <input type="text" name="email">
+            <input type="text" name="email" value = "<?php echo $email; ?>">
                 <div class="red-text"><?php echo $errors['email']; ?></div>
             <label>Pizza Title:</label>
-            <input type="text" name="title">
+            <input type="text" name="title" value = "<?php echo $title; ?>">
                 <div class="red-text"><?php echo $errors['title']; ?>
             <label>Ingredients (comma separated):</label>
-            <input type="text" name="Ingredients">
+            <input type="text" name="ingredients" value = "<?php echo $ingredients; ?>">
                 <div class="red-text"><?php echo $errors['ingredients']; ?>
             <div class="center">
                 <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
