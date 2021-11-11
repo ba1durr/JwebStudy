@@ -1,6 +1,6 @@
 <?php
 
-
+$title = $email = $ingredients = '';
 $errors = ['email' => '', 'title' => '', 'ingredients' => ''];
     // if(isset($_GET['submit'])){
     //     echo $_GET['Email'];        
@@ -34,7 +34,7 @@ $errors = ['email' => '', 'title' => '', 'ingredients' => ''];
         }
 
         //check ingredients
-        if (empty($_POST['Ingredients'])){
+        if (empty($_POST['ingredients'])){
             $errors['ingredients'] = 'At least one ingredient is required <br />';
         }else {
             $ingredients = $_POST['ingredients'];
