@@ -44,6 +44,15 @@ $errors = ['email' => '', 'title' => '', 'ingredients' => ''];
             // echo htmlspecialchars($_POST['Ingredients']);             
         }
         
+        if (array_filter($errors)){
+            //echo 'errors in the form';
+        } else {
+            //echo 'form is valid';
+            header('Location: index.php');
+        }
+
+
+
     }  //end of POST CHECK
 
     function Input($name, $val){
@@ -53,6 +62,7 @@ $errors = ['email' => '', 'title' => '', 'ingredients' => ''];
             }
             else {echo "";}
     }
+
 
 ?>
 
