@@ -2,6 +2,27 @@
 
 include('config/db_connect.php');
 
+if(isset($_POST['delete'])){
+
+    //fetch
+    $id_to_delete = mysqli_real_escape_string($conn, $_POST['id_to_delete']);
+
+    //delete
+    $sql = "DELETE FROM pizzas WHERE id = $id_to_delete";
+
+    //make query
+    if(mysqli_query($conn, $sql)){
+    //success
+    header('Location: index.php');
+    } {
+    //failure
+
+    echo 'query error: ' . mysqli_error($conn);
+
+    }
+
+
+}
 
 //check GET request id parameter
 if(isset($_GET['id'])){
@@ -41,6 +62,13 @@ mysqli_close($conn);
         <p><?php echo htmlspecialchars($pizza['created at']); ?></p>
         <h5>Ingredients:</h5>
         <p><?php echo htmlspecialchars($pizza['ingredients']);?></p>
+
+<!-- DELETE FORM -->
+<form action="details.php" method="POST">
+    <input type="hidden" name="id_to_delete" value="<?php echo $pizza['id']; ?>">
+    <input type="submit" name="delete" value="Delete" class="btn brand z-depth-0">
+</form>
+
 
     <?php else: ?>
 
