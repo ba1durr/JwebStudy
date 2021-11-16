@@ -10,7 +10,7 @@ if($_SERVER['QUERY_STRING'] == 'noname'){
 
 }
 
-$name = $_SESSION['name'];
+$name = $_SESSION['name'] ?? 'Guest';
 
 ?>
 
