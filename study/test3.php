@@ -1,8 +1,8 @@
 <?php 
 
 class User{
-    public $username = 'baldur';
-    private $email = 'baldur@odin.com';
+    public $username;
+    private $email;
 
     public function __construct($username, $email){
         $this->username = $username;
@@ -13,18 +13,31 @@ class User{
         return "$this->email added a new friend";
     }
 
+    //getters
+    public function getEmail(){
+        return $this->email;
+    }
+    //setter
+    public function setEmail($email){
+        if(strpos($email,'@') > -1){
+        $this->email = $email;
+        } else {
+            echo 'invalid email address!' . '<br />';
+        }
+    }
+
+
 }
 
 $userOne = new User('Mario','Mario@bandai.com');
 $userTwo = new User('Freya','Freya@vanir.com');
 
-// echo $userOne->email . '<br />';
-// echo $userTwo->email . '<br />';
+$userOne->setEmail('Baldurodin.com');
 
-echo $userOne->addFriend();
 
-// print_r ( get_class_vars('User') );
-// print_r ( get_class_methods('User') );
+
+echo $userOne->getEmail() . '<br>';
+echo $userTwo->getEmail();
 
 ?>
 
