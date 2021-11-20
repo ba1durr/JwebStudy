@@ -22,22 +22,37 @@ class User{
         if(strpos($email,'@') > -1){
         $this->email = $email;
         } else {
-            echo 'invalid email address!' . '<br />';
+            return 'invalid email address!';
         }
     }
+}
 
+class AdminUser extends User {
+
+    public $level;
+
+    public function __construct($username,$email,$level){
+        $this->level = $level;
+        parent::__construct($username,$email);
+
+    }
 
 }
 
+
 $userOne = new User('Mario','Mario@bandai.com');
 $userTwo = new User('Freya','Freya@vanir.com');
+$userThree = new AdminUser('Yoshi', 'yoshi@odin.com', 5);
 
-$userOne->setEmail('Baldurodin.com');
+echo $userThree->username . '<br />';
+echo $userThree->getEmail() . '<br />';
+echo $userThree->level . '<br />';
+
+// $userOne->setEmail('Baldur@odin.com');
 
 
-
-echo $userOne->getEmail() . '<br>';
-echo $userTwo->getEmail();
+// echo $userOne->getEmail() . '<br>';
+// echo $userTwo->getEmail();
 
 ?>
 
