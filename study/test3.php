@@ -30,6 +30,15 @@ class User{
             return 'invalid email address!';
         }
     }
+    //destruct method
+    public function __destruct(){
+        echo "the user $this->username was removed <br/>";
+    }
+    //clone
+    public function __clone(){
+        $this->username = $this->username . '(cloned)<br/>';
+    }
+
 }
 
 class AdminUser extends User {
@@ -53,6 +62,11 @@ $userOne = new User('Mario','Mario@bandai.com');
 $userTwo = new User('Freya','Freya@vanir.com');
 $userThree = new AdminUser('Yoshi', 'yoshi@odin.com', 5);
 
+$userFour = clone $userOne;
+echo $userFour->username;
+
+//unset($userOne);
+
 // echo $userThree->username . '<br />';
 // echo $userThree->getEmail() . '<br />';
 // echo $userThree->level . '<br />';
@@ -60,11 +74,11 @@ $userThree = new AdminUser('Yoshi', 'yoshi@odin.com', 5);
 // $userOne->setEmail('Baldur@odin.com');
 
 
-echo $userOne->role . '<br />';
-echo $userThree->role . '<br />';
-echo $userOne->message() . '<br />';
-echo $userTwo->message() . '<br />';
-echo $userThree->message() . '<br />';
+// echo $userOne->role . '<br />';
+// echo $userThree->role . '<br />';
+// echo $userOne->message() . '<br />';
+// echo $userTwo->message() . '<br />';
+// echo $userThree->message() . '<br />';
 // echo $userTwo->getEmail();
 
 ?>
