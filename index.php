@@ -54,5 +54,5 @@ include('config/db_connect.php');
     </div>
 
     <?php include('templates/footer.php'); ?>
-
+ 
 </html> 
