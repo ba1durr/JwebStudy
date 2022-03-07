@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="add.js"></script>
+<title>Add a Product</title>
+</head>
+<body>
+    <section class="container gray-text">
+        <h4 class="center">Add a Product</h4>
+        <form action="add.php" class="white" method="POST">
+            <label>SKU:</label>
+            <input type="text" name="SKU" value = "">
+                <div class="red-text"></div>
+            <label>Name:</label>
+            <input type="text" name="Name" value = "">
+                <div class="red-text">
+            <label>Price (in $):</label>
+            <input type="text" name="Price" value = "">
+                <div class="red-text">
+            <div class="center">
+            <label>Type:</label>
+            <select onchange="changeMarkup(this.value)">
+                <option value="">Select Product Type</option>
+                <option value="DVD">DVD</option>
+                <option value="Book">Book</option>
+                <option value="Furniture">Furniture</option>
+            </select>
+                <div id="dynamic">
+                </div>
+                <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
+            </div>
+        </form>
+    </section>
+</body>
+</html>
