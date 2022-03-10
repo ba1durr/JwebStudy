@@ -3,17 +3,10 @@
 include('classes/dbh.class.php');
 include('includes/class-autoload.inc.php');
 
-    if(isset($_POST['submit'])){
-        print_r($_POST);
-        //Entry Validation
-        
-        $valid = new productValidator($_POST);
-        $errors = $valid->validateForm();
-
-        
-    }
+$valid = new productValidator($_POST);
+$errors = $valid->validateForm();
+print_r(json_encode($errors));
 
 
-?>
 
 

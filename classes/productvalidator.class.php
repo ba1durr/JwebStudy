@@ -4,7 +4,7 @@ class productValidator{
 
     private $data;
     private $errors = [];
-    private static $fields = ['SKU' , 'Name', 'Price', 'Size', 'Weight', 'Height', 'Width', 'Length'];
+    private static $fields = ['SKU' , 'Name', 'Price', 'Type'];
     
     public function __construct($post_data){
     $this->data = $post_data;
@@ -21,11 +21,21 @@ class productValidator{
         $this->validateSKU();
         $this->validateName();
         $this->validatePrice();
-        $this->validateSize();
-        $this->validateWeight();
-        $this->validateHeight();
-        $this->validateWidth();
-        $this->validateWeight();
+
+        switch ($this->data['Type']) {
+            case 'DVD':
+                $this->validateSize();
+                break;
+            case 'Book':
+                $this->validateWeight();
+                break;
+            case 'Furniture':
+                $this->validateHeight();
+                $this->validateWidth();
+                $this->validateLength();
+                break;
+
+        }
         return $this->errors;
     }
     
@@ -53,7 +63,7 @@ class productValidator{
             $this->addError('Name', 'Name cannot be empty');
         } else {
     
-            if(!preg_match('/^[a-zA-Z0-9]{6,12}$/', $val)) {
+            if(!preg_match('/^[a-zA-Z ]*$/', $val)) {
                 $this->addError('Name' , 'Name must be a valid Name');
             }
         }
@@ -67,7 +77,7 @@ class productValidator{
             $this->addError('Price', 'Price cannot be empty');
         } else {
     
-            if(!preg_match('/^[0-9]*$/', $val)) {
+            if(!preg_match('/^[0-9]+(\.[0-9]{2})?$/', $val)) {
                 $this->addError('Price' , 'Price must be a valid Price');
             }
         }
@@ -81,7 +91,7 @@ class productValidator{
             $this->addError('Size', 'Size cannot be empty');
         } else {
     
-            if(!preg_match('/^[0-9]*$/', $val)) {
+            if(!preg_match('/^[0-9]+(\.[0-9]{2})?$/', $val)) {
                 $this->addError('Size' , 'Size must be a valid Size');
             }
         }
@@ -95,7 +105,7 @@ class productValidator{
             $this->addError('Weight', 'Weight cannot be empty');
         } else {
     
-            if(!preg_match('/^[0-9]*$/', $val)) {
+            if(!preg_match('/^[0-9]+(\.[0-9]{2})?$/', $val)) {
                 $this->addError('Weight' , 'Weight must be a valid Weight');
             }
         }  
@@ -109,7 +119,7 @@ class productValidator{
             $this->addError('Height', 'Height cannot be empty');
         } else {
     
-            if(!preg_match('/^[0-9]*$/', $val)) {
+            if(!preg_match('/^[0-9]+(\.[0-9]{2})?$/', $val)) {
                 $this->addError('Height' , 'Height must be a valid Height');
             }
         }
@@ -123,7 +133,7 @@ class productValidator{
             $this->addError('Width', 'Width cannot be empty');
         } else {
     
-            if(!preg_match('/^[0-9]*$/', $val)) {
+            if(!preg_match('/^[0-9]+(\.[0-9]{2})?$/', $val)) {
                 $this->addError('Width' , 'Width must be a valid Width');
             }
         }   
@@ -137,7 +147,7 @@ class productValidator{
             $this->addError('Length', 'Length cannot be empty');
         } else {
     
-            if(!preg_match('/^[0-9]*$/', $val)) {
+            if(!preg_match('/^[0-9]+(\.[0-9]{2})?$/', $val)) {
                 $this->addError('Length' , 'Length must be a valid email');
             }
         }
