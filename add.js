@@ -1,12 +1,12 @@
 //script for dynamically changing the typeSwitcher
 
-
-
 function changeMarkup(value){
-    
     var arr = { "DVD": "makeDVD", "Book": "makeBook", "Furniture": "makeFurniture" };
     
-    window[arr[value]]();
+    if (arr[value]) { 
+      window[arr[value]](); 
+    }
+
 }
 
 

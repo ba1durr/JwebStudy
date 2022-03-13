@@ -1,7 +1,7 @@
 <?php
 
 
-class UsersView extends Products {
+class productsView extends Products {
     
     public function showProduct() {
         $results = $this->getProduct();

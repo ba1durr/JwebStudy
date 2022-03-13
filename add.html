@@ -2,6 +2,7 @@
 <html>
 <head>
     <script src="add.js"></script>
+    <script src="validate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>Add a Product</title>
 </head>
@@ -19,14 +20,14 @@
             <input id= "Price" type="text" name="Price" value = "">
                 <br><label id="Error_Price" style="color: red;"></label></br>
             <label>Type:</label>
-            <select name = "Type" onchange="changeMarkup(this.value)">
+            <select name = "Type" onchange="changeMarkup(this.value); validateType(this.value)">
                 <option value="">Select Product Type</option>
                 <option value="DVD">DVD</option>
                 <option value="Book">Book</option>
                 <option value="Furniture">Furniture</option>
             </select>
-                <div id="dynamic">
-                </div>
+            <br><label id="Error_Type" style="color: red;"></label></br>
+            <div id="dynamic"></div>
                 <input type="submit" name="submit" value="submit" class="btn brand z-depth-0">
             </div>
         </form>
@@ -53,49 +54,49 @@
          data = JSON.parse(data);
 
          if (jQuery.isEmptyObject(data)) {
-            console.log("Successfully Added Product");
-            document.getElementById('Error_SKU').innerHTML = "";
-            document.getElementById('Error_Name').innerHTML = "";
-            document.getElementById('Error_Price').innerHTML = "";
+           
+         console.log("Successfully Added Product");
+           
         }else {
-    for (const key in data){
 
-    if(data.hasOwnProperty(key)){
+            for (const key in data){
 
-    console.log(key , data[key]);
+                if(data.hasOwnProperty(key)){
 
-    if(key=="SKU"){
-        document.getElementById('Error_SKU').innerHTML = data[key];
-        
-    } else if(key=="Name"){
-        document.getElementById('Error_Name').innerHTML = data[key];
+                    console.log(key , data[key]);
 
-    } else if(key=="Price"){
-        document.getElementById('Error_Price').innerHTML = data[key];
+                if(key=="SKU"){
+                    document.getElementById('Error_SKU').innerHTML = data[key];
+                    
+                } if(key=="Name"){
+                    document.getElementById('Error_Name').innerHTML = data[key];
 
-    } else if(key=="Size"){
-        document.getElementById('Error_Size').innerHTML = data[key];
+                } if(key=="Price"){
+                    document.getElementById('Error_Price').innerHTML = data[key];
 
-    } else if(key=="Weight"){
-        document.getElementById('Error_Weight').innerHTML = data[key];
+                } if(key=="Size"){
+                    document.getElementById('Error_Size').innerHTML = data[key];
 
-    } else if(key=="Height"){
-        document.getElementById('Error_Height').innerHTML = data[key];
+                } if(key=="Weight"){
+                    document.getElementById('Error_Weight').innerHTML = data[key];
 
-    } else if(key=="Width"){
-        document.getElementById('Error_Width').innerHTML = data[key];
-    
-    } else if(key=="Length"){
-        document.getElementById('Error_Length').innerHTML = data[key];
+                } if(key=="Height"){
+                    document.getElementById('Error_Height').innerHTML = data[key];
 
-    }
-
-    
-                            }
-                            }
-                            }
+                } if(key=="Width"){
+                    document.getElementById('Error_Width').innerHTML = data[key];
+                
+                } if(key=="Length"){
+                    document.getElementById('Error_Length').innerHTML = data[key];
             
-        } 
+                } if(key=="Type"){
+                    document.getElementById('Error_Type').innerHTML = data[key];
+                }
+
+}
+}
+}
+} 
 });
 }); 
 </script>

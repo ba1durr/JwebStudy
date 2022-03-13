@@ -21,6 +21,7 @@ class productValidator{
         $this->validateSKU();
         $this->validateName();
         $this->validatePrice();
+        $this->validateType();
 
         switch ($this->data['Type']) {
             case 'DVD':
@@ -82,6 +83,16 @@ class productValidator{
             }
         }
     }
+
+    private function validateType(){
+    
+        $val = $this->data['Type'];
+    
+        if(empty($val)){
+            $this->addError('Type', 'Type must be chosen');
+        }
+    }
+
 
     private function validateSize(){
     
