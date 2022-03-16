@@ -3,7 +3,8 @@
 class Products extends Dbh{
 
 protected function getProduct() {
-    $sql = "SELECT * FROM products WHERE Product_Name = ?";
+
+    $sql = "SELECT * FROM product";
     $stmt = $this->connect()->prepare($sql);
     $stmt->execute();
 
@@ -13,9 +14,14 @@ protected function getProduct() {
 
 protected function saveProduct($post) {
 
-    echo "ass";
-    die();
-
+    $sql = "INSERT INTO `product` (`SKU`, `Product_Name`, `Product_Price`, `Product_Type`)
+            VALUES (:SKU, :name, :price, :type);";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->bindValue(':SKU', $post['SKU']);
+    $stmt->bindValue(':name', $post['Product_Name']);
+    $stmt->bindValue(':price', $post['Product_Price']);
+    $stmt->bindValue(':type', $post['Product_Type']);
+    $stmt->execute();
 
 }
 

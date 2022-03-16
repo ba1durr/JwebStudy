@@ -42,7 +42,7 @@ class productValidator{
     
     private function validateSKU(){
     
-//gotta add functionality to check uniqueness in the DB
+        //gotta add functionality to check uniqueness in the DB
 
         $val = trim($this->data['SKU']);
     
@@ -168,4 +168,3 @@ class productValidator{
     $this->errors[$key] = $val;
     }
 }
-    

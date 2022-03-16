@@ -9,18 +9,18 @@
 <body>
     <section class="container gray-text">
         <h4 class="center">Add a Product</h4>
-        <form id="Form">
+        <form id="product_form">
             <label>SKU:</label>
-            <input id="SKU" type="text" name="SKU" value = "">
+            <input id="sku" type="text" name="SKU" value = "">
                 <br><label id="Error_SKU" style="color: red;"></label></br>
             <label>Name:</label>
-            <input id= "Name" type="text" name="Name" value = "">
+            <input id= "name" type="text" name="Name" value = "">
                 <br><label id="Error_Name" style="color: red;"></label></br>
             <label>Price (in $):</label>
-            <input id= "Price" type="text" name="Price" value = "">
+            <input id= "price" type="text" name="Price" value = "">
                 <br><label id="Error_Price" style="color: red;"></label></br>
             <label>Type:</label>
-            <select name = "Type" onchange="changeMarkup(this.value); validateType(this.value)">
+            <select id="productType" name = "Type" onchange="changeMarkup(this.value); validateType(this.value)">
                 <option value="">Select Product Type</option>
                 <option value="DVD">DVD</option>
                 <option value="Book">Book</option>
@@ -37,7 +37,7 @@
 
 
 <script>
-    $("#Form").submit(function(e) {
+    $("#product_form").submit(function(e) {
 
     e.preventDefault();
 
@@ -53,10 +53,11 @@
          //filter
          data = JSON.parse(data);
 
-         if (jQuery.isEmptyObject(data)) {
+         if (data['success']) {
            
          console.log("Successfully Added Product");
-           
+         window.location.href = data['success'];
+         
         }else {
 
             for (const key in data){
@@ -65,33 +66,7 @@
 
                     console.log(key , data[key]);
 
-                if(key=="SKU"){
-                    document.getElementById('Error_SKU').innerHTML = data[key];
-                    
-                } if(key=="Name"){
-                    document.getElementById('Error_Name').innerHTML = data[key];
-
-                } if(key=="Price"){
-                    document.getElementById('Error_Price').innerHTML = data[key];
-
-                } if(key=="Size"){
-                    document.getElementById('Error_Size').innerHTML = data[key];
-
-                } if(key=="Weight"){
-                    document.getElementById('Error_Weight').innerHTML = data[key];
-
-                } if(key=="Height"){
-                    document.getElementById('Error_Height').innerHTML = data[key];
-
-                } if(key=="Width"){
-                    document.getElementById('Error_Width').innerHTML = data[key];
-                
-                } if(key=="Length"){
-                    document.getElementById('Error_Length').innerHTML = data[key];
-            
-                } if(key=="Type"){
-                    document.getElementById('Error_Type').innerHTML = data[key];
-                }
+                    document.getElementById('Error_'+key).innerHTML = data[key];
 
 }
 }
