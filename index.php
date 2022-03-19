@@ -1,62 +1,53 @@
 <?php 
-include 'includes/class-autoload.inc.php'
-?>
 
-<?php
+require_once('classes/dbh.class.php');
+require_once('classes/products.class.php');
+require_once('classes/View.class.php');
+require_once('classes/contr.class.php');
+require_once('classes/Attributes.class.php');
+require_once('classes/DVD.class.php');
+require_once('classes/Furniture.class.php');
+require_once('classes/Book.class.php');
 
-// include('config/db_connect.php');
-//     //writing queries for all the pizzas
-//     $sql = 'SELECT title, ingredients, id
-//             FROM pizzas
-//             ORDER BY `created at`';
+$prod = new productsView();
+$prodd = $prod->showProduct();
 
-//     //make query and get result
-//     $result = mysqli_query($conn, $sql);
+$book = new Book;
+$bookarr = $book->getAttr();
 
-//     //fetch the resulting rows as an array
-//     $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$DVD = new DVD;
+$DVDarr = $DVD->getAttr();
 
-//     //freeing from memory
-//     mysqli_free_result($result);
+$Furniture = new Furniture;
+$FurnitureArr = $Furniture->getAttr();
 
-//     //close connection
-//     mysqli_close($conn);
+$merge1 = array_merge($bookarr, $DVDarr);
+$merge2 = array_merge($merge1, $FurnitureArr);
 
-//     //explode(',' , $pizzas[0]['ingredients']);
+foreach ($merge2 as $attribute){
+   
+    echo "this is attribute Index " . $attribute['Index'];
+    echo "</br>";
 
-// $obj = new Products();
-// $obj->getProduct();
+    foreach ($prodd as &$product){
+
+        if ($attribute['Index'] == $product ['Product_ID']){
+
+            $product += [$attribute['Attribute']=> $attribute['Value']];
+            
+        }
+
+        echo "this is Product ID " . $product['Product_ID'];
+        echo "</br>";
+
+
+    }
+
   
+}
+
+print_r($prodd);
+
+
+
 ?>
-
-<!DOCTYPE html>
-<html>
-    
-    <?php include('templates/header.php'); ?>
-
-    <h4 class="center grey-text">Store</h4>
-    <div class="container">
-        <div class="row">
-
-            <?php //foreach($pizzas as $pizza): ?>
-
-                <div class="col s6 md3">
-                    <div class="card z-depth-0">
-                        <img src="img/pizza.svg" class="pizza">
-                        <div class="card-content center">
-                            <h6><?php //echo htmlspecialchars($pizza['title']); ?></h6>
-                                <ul>
-                                    <?php //foreach(explode(',' , $pizza['ingredients'])as $ing): ?> 
-                                        <li><?php //echo htmlspecialchars($ing); ?></li>    
-                                    <?php //endforeach; ?>    
-                                </ul>
-                        </div>
-                    </div>
-                </div>
-            <?php //endforeach; ?>
-        </div>
-    </div>
-
-    <?php //include('templates/footer.php'); ?>
- 
-</html>

@@ -1,7 +1,17 @@
 <?php 
 
-class attr_Furniture extends productAttribute{
+class Furniture extends Products implements productAttribute{
     
+    public function getAttr(){
+    
+        $sql = "SELECT * FROM attributes where Attribute in ('Height', 'Width', 'Length')";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    
+        $results = $stmt->fetchAll();
+        return $results;
+        }
+
     public function setAttr($post){
 
         $sqql = "SELECT * FROM `product` WHERE SKU = :SKU";

@@ -20,12 +20,10 @@ if ($errors){
         $cont->setProduct($_POST);
         //setAttr is executed in a different manner for each product type
 
-        $prefix = 'attr_';
+        $prefix = '';
         $classInstance = $prefix . $_POST['Type'];
         $attr = new $classInstance($_POST);
         $attr->setAttr($_POST);
-        // $attr = new attr_Book;
-        // $attr->setAttr($_POST);
 
         $success = ["success" => "index.php"];
         echo json_encode($success);

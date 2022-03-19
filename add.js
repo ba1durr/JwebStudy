@@ -29,7 +29,6 @@ function makeDVD(){
 
     var breakLine1 = document.createElement("br");
     
-
     var OBJ = document.createElement("input");
         OBJ.setAttribute("type", "text");
         OBJ.setAttribute("name", "Size");

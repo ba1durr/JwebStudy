@@ -2,7 +2,7 @@
 
 class Products extends Dbh{
 
-protected function getProduct() {
+public function getProduct() {
 
     $sql = "SELECT * FROM product";
     $stmt = $this->connect()->prepare($sql);
@@ -10,9 +10,10 @@ protected function getProduct() {
 
     $results = $stmt->fetchAll();
     return $results;
+
 }
 
-protected function saveProduct($post) {
+public function saveProduct($post) {
 
     $sql = "INSERT INTO `product` (`SKU`, `Product_Name`, `Product_Price`, `Product_Type`)
             VALUES (:SKU, :name, :price, :type);";

@@ -1,6 +1,16 @@
 <?php 
 
-class attr_DVD extends productAttribute{
+class DVD extends Products implements productAttribute{
+    
+    public function getAttr(){
+    
+        $sql = "SELECT * FROM attributes where Attribute = 'Size'";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll();
+        return $results;
+        }
     
     public function setAttr($post){
 

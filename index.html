@@ -1,0 +1,30 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="index.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body onload="productFetch();" >
+ 
+<div id="info1"></div>
+
+</body>
+</html>
+
+<script>
+ 
+ function productFetch() {
+ 
+ $.ajax({
+        type: "POST",
+        url: 'index.php',
+        success: function(data)
+        {
+         data = JSON.parse(data);
+         console.log(data);
+        }
+})
+
+ }
+</script>

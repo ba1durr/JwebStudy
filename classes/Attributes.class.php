@@ -1,18 +1,9 @@
 <?php
 
-abstract class productAttribute extends Dbh{
+interface productAttribute {
 
-    protected function getAttr() {
+    public function getAttr();
 
-        $sql = "SELECT * FROM attributes WHERE Attribute = ? /*here we will link to the index of the specified product*/";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-
-        $results = $stmt->fetchAll();
-        return $results;
-    
-    }
-
-   abstract protected function setAttr($post);
+    public function setAttr($post);
 
 }

@@ -1,6 +1,16 @@
 <?php 
 
-class attr_Book extends productAttribute{
+class Book extends Products implements productAttribute{
+
+    public function getAttr(){
+    
+        $sql = "SELECT * FROM attributes where Attribute = 'Weight'";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+    
+        $results = $stmt->fetchAll();
+        return $results;
+        }
 
     public function setAttr($post){
 
@@ -20,5 +30,6 @@ class attr_Book extends productAttribute{
             $stmt2->execute();
 
     }
+
 
 }
