@@ -9,6 +9,9 @@ require_once('classes/DVD.class.php');
 require_once('classes/Furniture.class.php');
 require_once('classes/Book.class.php');
 
+// $data = $_POST['products'];
+
+
 $prod = new productsView();
 $prodd = $prod->showProduct();
 
@@ -26,9 +29,6 @@ $merge2 = array_merge($merge1, $FurnitureArr);
 
 foreach ($merge2 as $attribute){
    
-    echo "this is attribute Index " . $attribute['Index'];
-    echo "</br>";
-
     foreach ($prodd as &$product){
 
         if ($attribute['Index'] == $product ['Product_ID']){
@@ -37,16 +37,21 @@ foreach ($merge2 as $attribute){
             
         }
 
-        echo "this is Product ID " . $product['Product_ID'];
-        echo "</br>";
-
-
     }
 
   
 }
 
-print_r($prodd);
+print_r(json_encode($prodd));
+
+
+// echo '</br>';
+// echo '</br>';
+// echo '</br>';
+// foreach($_POST as $key=>$value)
+// {
+//   echo "$key=$value";
+// }
 
 
 

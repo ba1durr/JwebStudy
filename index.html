@@ -3,28 +3,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title></title>
+        <title>Scandiweb Task</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+<header class="head">
+        <button onclick="window.location.href='add.html'">ADD</button>
+        <input id="delete-checkbox" form="products" type="submit" name="submit" value="Mass Delete">
+</header>
+
 <body onload="productFetch();" >
  
-<div id="info1"></div>
+        <form class = "prods" value = "products" name = "products" id="products" action="index.php">
+        
+        </form>
 
 </body>
 </html>
 
 <script>
- 
- function productFetch() {
- 
- $.ajax({
-        type: "POST",
-        url: 'index.php',
-        success: function(data)
-        {
-         data = JSON.parse(data);
-         console.log(data);
-        }
-})
 
- }
+        $("#products").submit(function(e) {
+        e.preventDefault();
+
+        var form = $(this);
+        var actionUrl = form.attr('action');
+
+        $.ajax({
+                type: "POST",
+                url: 'delete.php',
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                        window.location.href = "index.html";
+                }
+        });
+
+        })
+        
+        function productFetch() {
+        
+        $.ajax({
+
+                type: "POST",
+                url: 'index.php',
+                success: function(data)
+                {
+                        data = JSON.parse(data);
+                        prods = Object.values(data);
+                        console.log(data);
+                        console.log(prods);
+
+                        function attributes(prodds){
+                                if(prodds.Product_Type == 'DVD'){
+                                return "Size: " + prodds.Size + " MB";
+                                } if(prodds.Product_Type == 'Book'){
+                                return "Weight: " + prodds.Weight  + "KG";
+                                } if(prodds.Product_Type == 'Furniture'){
+                                return "Dimensions: " + prodds.Height + "x" + prodds.Width + "x" + prodds.Length;
+                                }
+                        }
+
+                        function prodTemp (prodds) {
+                                return `
+                                <div class="card">
+                                        <input class="delete-checkbox" type="checkbox" name="del[]" value="${prodds.Product_ID}">
+                                        <div class="contentBox">
+                                        <h3>${prodds.SKU}</h3>
+                                        <h3>${prodds.Product_Name}</h3>
+                                        <p class="price">${prodds.Product_Price} $</p>
+                                        <p class="price">${attributes(prodds)}</p>
+                                        
+                                        </div>
+                                </div>
+                                `
+                        }
+
+                        document.getElementById("products").innerHTML = `
+                        
+                        ${prods.map(prodTemp).join(' ')}
+                        
+                        `;
+                }
+        });
+}
+        
 </script>

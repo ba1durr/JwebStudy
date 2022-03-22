@@ -1,9 +1,9 @@
 <?php
 
-interface productAttribute {
+abstract class productAttribute extends Products {
 
-    public function getAttr();
+    abstract function getAttr();
 
-    public function setAttr($post);
+    abstract function setAttr($post);
 
 }

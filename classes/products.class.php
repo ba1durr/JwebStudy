@@ -26,4 +26,14 @@ public function saveProduct($post) {
 
 }
 
+public function getSKU(){
+
+    $sql = "SELECT SKU FROM product";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute();
+
+    $SKU = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $SKU;
+}
+
 }

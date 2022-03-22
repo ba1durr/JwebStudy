@@ -7,9 +7,12 @@ require_once('classes/DVD.class.php');
 require_once('classes/Furniture.class.php');
 require_once('classes/Book.class.php');
 
-$valid = new productValidator($_POST);
-$errors = $valid->validateForm();
 $cont = new productsContr();
+$Sku = $cont->showSKU();
+$valid = new productValidator($_POST,$Sku);
+$errors = $valid->validateForm();
+
+
 
 if ($errors){
    

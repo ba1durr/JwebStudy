@@ -1,6 +1,6 @@
 <?php 
 
-class Furniture extends Products implements productAttribute{
+class Furniture extends productAttribute{
     
     public function getAttr(){
     

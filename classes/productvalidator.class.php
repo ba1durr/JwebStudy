@@ -2,12 +2,14 @@
 
 class productValidator{
 
+    private $SKU;
     private $data;
     private $errors = [];
     private static $fields = ['SKU' , 'Name', 'Price', 'Type'];
     
-    public function __construct($post_data){
+    public function __construct($post_data,$sku){
     $this->data = $post_data;
+    $this->SKU = $sku;
     }
     
     public function  validateForm(){
@@ -42,9 +44,17 @@ class productValidator{
     
     private function validateSKU(){
     
-        //gotta add functionality to check uniqueness in the DB
-
         $val = trim($this->data['SKU']);
+
+        foreach ($this->SKU as $SKUU){
+
+            if ($SKUU == $val){
+
+                $this->addError('SKU', 'Please provide Unique SKU!');
+
+            }
+
+        }
     
         if(empty($val)){
             $this->addError('SKU', 'SKU cannot be empty');

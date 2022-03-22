@@ -1,6 +1,6 @@
 <?php 
 
-class Book extends Products implements productAttribute{
+class Book extends productAttribute{
 
     public function getAttr(){
     

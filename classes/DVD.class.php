@@ -1,6 +1,6 @@
 <?php 
 
-class DVD extends Products implements productAttribute{
+class DVD extends productAttribute{
     
     public function getAttr(){
     

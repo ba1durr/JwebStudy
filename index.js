@@ -1,0 +1,1 @@
+// document.getElementById("products").innerHTML = `There are total (${productData.length}) products`;

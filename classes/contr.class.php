@@ -11,4 +11,12 @@ class productsContr extends Products {
 
     }
 
+    
+    public function showSKU() {
+
+        $results = $this->getSKU();
+        return $results;
+
+}
+
 }
